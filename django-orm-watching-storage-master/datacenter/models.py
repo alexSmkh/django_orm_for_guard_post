@@ -38,8 +38,9 @@ class Visit(models.Model):
         return duration.seconds > minutes * seconds_per_minute
 
     def __str__(self):
-        return "{user} entered at {entered} {leaved}".format(
-            user=self.passcard.owner_name,
-            entered=self.entered_at,
-            leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
-        )
+        username = self.passcard.owner_name
+        if self.leaved_at:
+            return f'{username} entered at {self.entered_at} {self.leaved_at}'
+        return f'{username} entered at {self.entered_at} not leaved'
+
+
