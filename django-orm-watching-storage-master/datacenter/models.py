@@ -33,7 +33,7 @@ class Visit(models.Model):
             microseconds=timedelta_duration.microseconds
         )
 
-    def is_it_long(self, duration, minutes=60):
+    def is_long(self, duration, minutes=60):
         seconds_per_minute = 60
         return duration.seconds > minutes * seconds_per_minute
 
