@@ -21,7 +21,7 @@ class Visit(models.Model):
     entered_at = models.DateTimeField()
     leaved_at = models.DateTimeField(null=True)
 
-    def get_duration_of_visit(self):
+    def get_duration(self):
         if self.leaved_at is None:
             now = timezone.now()
             timedelta_duration = now - self.entered_at
@@ -33,7 +33,7 @@ class Visit(models.Model):
             microseconds=timedelta_duration.microseconds
         )
 
-    def is_visit_long(self, duration, minutes=60):
+    def is_it_long(self, duration, minutes=60):
         seconds_per_minute = 60
         return duration.seconds > minutes * seconds_per_minute
 

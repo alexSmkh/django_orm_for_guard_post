@@ -7,12 +7,12 @@ def passcard_info_view(request, passcode):
     this_passcard_visits = []
     passcard = Passcard.objects.get(passcode=passcode)
     for visit in Visit.objects.filter(passcard=passcard):
-        duration_of_visit = visit.get_duration_of_visit()
+        duration_of_visit = visit.get_duration()
         this_passcard_visits.append(
             {
                 "entered_at": visit.entered_at,
                 "duration": duration_of_visit,
-                "is_strange": visit.is_visit_long(duration_of_visit)
+                "is_strange": visit.is_it_long(duration_of_visit)
             }
         )
     context = {
