@@ -27,6 +27,6 @@ SECRET_KEY=...
 ### Как запустить 
 
 ```bash
-python main.py
+python manage.py runserver
 ```
 
